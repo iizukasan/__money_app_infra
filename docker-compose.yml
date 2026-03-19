@@ -21,6 +21,7 @@ services:
       DATABASE_USER: postgres
       DATABASE_PASSWORD: password
       DATABASE_NAME: money_app_development
+      RAILS_ENV: development
     env_file:
       - ../__money_app_backend/.env
     depends_on:
@@ -29,7 +30,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ../__money_app_backend:/app
+      - ../__money_app_backend:/rails
 
   frontend:
     container_name: money_app_frontend
