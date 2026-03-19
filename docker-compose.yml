@@ -26,7 +26,7 @@ services:
       - ../__money_app_backend/.env
     depends_on:
       - db
-    command: bundle exec rails server -b 0.0.0.0 -p 3000
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails server -b 0.0.0.0 -p 3000"
     ports:
       - "3000:3000"
     volumes:
@@ -37,8 +37,8 @@ services:
     build:
       context: ../__money_app_frontend
       dockerfile: Dockerfile
-    environment:
-      VITE_API_HOST: http://backend:3000
+    env_file:
+      - ../__money_app_frontend/.env
     depends_on:
       - backend
     ports:
